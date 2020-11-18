@@ -81,6 +81,9 @@ target/
 profile_default/
 ipython_config.py
 
+# pycharm
+.idea/
+
 # pyenv
 .python-version
 
@@ -118,6 +121,7 @@ venv.bak/
 .ropeproject
 
 # mkdocs documentation
+.docs/
 /site
 
 # mypy
