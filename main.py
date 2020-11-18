@@ -5,13 +5,13 @@ layer_config = \
         'type': 'dense',
         'units': 200,
         'activation': ('leakyrelu', 0.2),
-        'kernel_regularization': ('l1_l2', 1e-4, 1e-3),
+        'kernel_regularizer': ('l1_l2', 1e-4, 1e-3),
         'dropout': 0.25,
         'flatten_input': True,
         'flatten_output': True
 }
 
 translator = ArgTranslator()
-tmp = translator.feed_arg_dict(layer_config)
-for k, v in tmp.items():
+arg_parsed = translator.feed_arg_dict(layer_config)
+for k, v in arg_parsed.items():
     print(k, v)
