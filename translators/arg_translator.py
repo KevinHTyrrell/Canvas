@@ -23,12 +23,12 @@ class ArgTranslator(BaseTranslator):
         return {'val': arg_val, 'complex': False}
 
     def _parse_str(self, arg_val):
-        return {'val': arg_val, 'complex': False}
+        return {'val': arg_val.lower(), 'complex': False}
 
     def _parse_tuple(self, arg_val):
         return_dict = dict()
         complex_val = False
-        str_args = [arg for arg in arg_val if type(arg) == str]
+        str_args = [arg.lower() for arg in arg_val if type(arg) == str]
         num_args = [arg for arg in arg_val if type(arg) == int or type(arg) == float]
         if len(str_args) > 0: # string in tuple
             return_dict.update({'name': str_args[0]})
