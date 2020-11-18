@@ -5,6 +5,7 @@ layer_config = \
         'type': 'dense',
         'units': 200,
         'activation': ('leakyrelu', 0.2),
+        'kernel_initializer': ('RandomUniform', -0.5, 0.5, 123456),
         'kernel_regularizer': ('l1_l2', 1e-4, 1e-3),
         'dropout': 0.25,
         'flatten_input': True,
