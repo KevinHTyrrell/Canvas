@@ -10,7 +10,7 @@ class ArgExpert(BaseExpert):
                 'type'                      : [str],
                 'units'                     : [int],
                 'activation'                : [str, tuple],
-                'kernel_regularization'     : [tuple],
+                'kernel_regularizer'        : [tuple],
                 'dropout'                   : [float],
                 'flatten_input'             : [bool],
                 'flatten_output'            : [bool]
