@@ -7,24 +7,24 @@ class ArgExpert(BaseExpert):
         # depending on what form it takes it will get passed to an object that will parse properly #
         param_dict = \
         {
-            'type'                      : [str],
-            'units'                     : [int],
             'activation'                : [str, tuple],
-            'kernel_initializer'        : [str, tuple],
-            'kernel_regularizer'        : [tuple],
+            'batch_norm'                : [bool],
+            'dilution'                  : [tuple],
             'dropout'                   : [float],
+            'filters'                   : [int],
             'flatten_input'             : [bool],
             'flatten_output'            : [bool],
-
-            'batch_norm'                : [bool],
-            'reshape'                   : [tuple],
-            'filters'                   : [int],
+            'kernel_initializer'        : [str, tuple],
+            'kernel_regularizer'        : [tuple],
             'kernel_size'               : [int, tuple],
-            'strides'                   : [int, tuple],
-            'padding'                   : [str],
             'max_pool'                  : [int, tuple],
-            'dilution'                  : [tuple],
-            'upsample_input'            : [tuple]
+            'padding'                   : [str],
+            'reshape'                   : [tuple],
+            'strides'                   : [int, tuple],
+            'type'                      : [str],
+            'units'                     : [int],
+            'upsample_input'            : [int, tuple],
+            'upsample_output'           : [int, tuple]
         }
         self._args.update({'parameters': param_dict})
     def check_arg(self, arg_name, arg_val) -> None:
