@@ -32,8 +32,8 @@ class ArgTranslator(BaseTranslator):
         num_args = [arg for arg in arg_val if type(arg) == int or type(arg) == float]
         if len(str_args) > 0: # string in tuple
             return_dict.update({'name': str_args[0]})
-        if len(num_args) > 0: # nums in tuple
             complex_val = True
+        if len(num_args) > 0:   # nums in tuple
             return_dict.update({'val': num_args})
         return_dict.update({'complex': complex_val})
         return return_dict
