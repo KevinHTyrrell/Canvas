@@ -12,13 +12,7 @@ class BlockOperator(BaseOperator):
         self._args.get('blocks').get('train').set_hyperparameters(args)
     def _set_transfer_args(self, args: dict):
         self._args.get('blocks').get('transfer').set_hyperparameters(args)
-    def set_blocks(self, transform_layer, train_layer, transfer_layer):
-        block_dict = {
-            'transform'     : transform_layer,
-            'train'         : train_layer,
-            'transfer'      : transfer_layer,
-        }
-        self._args.update({'blocks': block_dict})
+
     def _parse_hyperparameters(self, hyperparameters: dict):
         param_dict = dict()
         for k, v in self._args.get('blocks').items():
@@ -31,6 +25,14 @@ class BlockOperator(BaseOperator):
             param_dict[param_block].update({param_name: param_val})
         return param_dict
 
+    def set_blocks(self, transform_layer, train_layer, transfer_layer):
+        block_dict = {
+            'transform'     : transform_layer,
+            'train'         : train_layer,
+            'transfer'      : transfer_layer,
+        }
+        self._args.update({'blocks': block_dict})
+        
     def assign_hyperparameters(self, hyperparameters: dict):
         hp_dict = self._parse_hyperparameters(hyperparameters)
         assert len(hp_dict.keys()) == len(self._args.get('blocks'))
