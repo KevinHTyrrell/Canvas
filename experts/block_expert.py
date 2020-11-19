@@ -4,7 +4,7 @@ from experts.base_expert import BaseExpert
 class BlockExpert(BaseExpert):
     def _config(self):
         param_dict = {
-            'activation'                : None,
+            'activation'                : ('train', 'transfer'),
             'batch_norm'                : 'transfer',
             'dilution'                  : 'transfer',
             'dropout'                   : 'transfer',
