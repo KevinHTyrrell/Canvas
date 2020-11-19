@@ -9,4 +9,4 @@ class BaseBlock(ABC):
         raise NotImplementedError
 
     def set_hyperparameters(self, args: dict):
-        self._args.update({'parameters': args})
+        self._args.update({'hyperparameters': args})
