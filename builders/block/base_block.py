@@ -8,5 +8,5 @@ class BaseBlock(ABC):
     def _config(self):
         raise NotImplementedError
 
-    def set_parameters(self, args: dict):
+    def set_hyperparameters(self, args: dict):
         self._args.update({'parameters': args})
