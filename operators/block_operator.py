@@ -6,12 +6,6 @@ from experts.block_expert import BlockExpert
 class BlockOperator(BaseOperator):
     def _config(self):
         self._expert = BlockExpert()
-    def _set_transform_args(self, args: dict):
-        self._args.get('blocks').get('transform').set_hyperparameters(args)
-    def _set_train_args(self, args: dict):
-        self._args.get('blocks').get('train').set_hyperparameters(args)
-    def _set_transfer_args(self, args: dict):
-        self._args.get('blocks').get('transfer').set_hyperparameters(args)
 
     def _parse_hyperparameters(self, hyperparameters: dict):
         param_dict = dict()
@@ -36,10 +30,10 @@ class BlockOperator(BaseOperator):
         for block_name, block in block_dict.items():
             block.build()
 
-    def set_blocks(self, transform_layer, train_layer, transfer_layer):
+    def set_blocks(self, transform_block, train_block, transfer_block):
         block_dict = {
-            'transform'     : transform_layer,
-            'train'         : train_layer,
-            'transfer'      : transfer_layer,
+            'transform'     : transform_block,
+            'train'         : train_block,
+            'transfer'      : transfer_block,
         }
         self._args.update({'blocks': block_dict})
