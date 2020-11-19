@@ -36,3 +36,8 @@ class BlockOperator(BaseOperator):
         assert len(hp_dict.keys()) == len(self._args.get('blocks'))
         for k, args in hp_dict.items():
             self._args['blocks'].get(k).set_hyperparameters(args)
+
+    def build_blocks(self):
+        block_dict = self._args.get('blocks')
+        for block_name, block in block_dict.items():
+            block.build()
