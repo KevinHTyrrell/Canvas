@@ -1,4 +1,4 @@
-# WILL TAKE IN DICTIONARY OF PARSED ARGUMENTS AND PASS OUT ACCORDINGLY #
+from tensorflow import keras
 from operators.base_operator import BaseOperator
 from experts.block_expert import BlockExpert
 
@@ -25,10 +25,10 @@ class BlockOperator(BaseOperator):
         for k, args in hp_dict.items():
             self._args['blocks'].get(k).set_hyperparameters(args)
 
-    def build_blocks(self):
+    def build_blocks(self, input_layer: keras.layers.Layer):
         block_dict = self._args.get('blocks')
         for block_name, block in block_dict.items():
-            block.build()
+            block.build(input_layer)
 
     def set_blocks(self, transform_block, train_block, transfer_block):
         block_dict = {
