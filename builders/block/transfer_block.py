@@ -10,12 +10,35 @@ class TransferBlock(BaseBlock):
         for arg_name, arg_val in hyperparameters.items():
             arg_val_built = self._arg_mapper.map_arg(arg_name=arg_name, arg_val=arg_val)
             param_dict.update(arg_val_built)
+        if param_dict.get('activation'):
+            act_name, act_val = param_dict['activation'].values()
+            activation_layer_skeleton = self._layer_expert.get_layer(act_name)
+            activation_layer = activation_layer_skeleton(*act_val)(current_layer)
+            current_layer = activation_layer
+        if param_dict.get('dropout'):
+            dropout_layer_skeleton = self._layer_expert.get_layer('dropout')
+            dropout_layer = dropout_layer_skeleton(param_dict.get('dropout'))(current_layer)
+            current_layer = dropout_layer
+        if param_dict.get('dilution'):
+            act_name, act_val = param_dict['dilution'].values()
+            dilution_layer_skeleton = self._layer_expert.get_layer(act_name)
+            dilution_layer = dilution_layer_skeleton(*act_val)(current_layer)
+            current_layer = dilution_layer
+        if param_dict.get('max_pool'):
+            pool_dims = len(param_dict.get('max_pool'))
+            pool_layer_name = 'maxpooling{n_dims}d'.format(n_dims=pool_dims)
+            pool_layer_skeleton = self._layer_expert.get_layer(pool_layer_name)
+            pool_layer = pool_layer_skeleton(param_dict.get('max_pool'))(current_layer)
+            current_layer = pool_layer
         print(param_dict)
+
+
+
 '''
-activation
-dropout
-dilution
-max_pool
+    X    activation
+    X    dropout
+    X    dilution
+    X    max_pool
 
 # conflict so need to decide order of preference #
 1. reshape
