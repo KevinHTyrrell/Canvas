@@ -3,7 +3,7 @@ from builders.block.base_block import BaseBlock, keras
 
 class TransformBlock(BaseBlock):
     def build(self, input_layer: keras.layers.Layer):
-        layers_built = list()
+        tensor_list = list()
         current_layer = input_layer
         param_dict = dict()
         hyperparameters = self._args.get('hyperparameters')
@@ -23,3 +23,4 @@ class TransformBlock(BaseBlock):
             current_layer = upsample_layer
             layers_built.append(current_layer)
         self._args['output_layer'] = current_layer
+        return tensor_list
