@@ -7,6 +7,7 @@ class TrainBlock(BaseBlock):
     def build(self, input_layer: keras.layers.Layer):
         param_dict = dict()
         tensor_list = list()
+        current_layer = input_layer
         hyperparameters = self._args.get('hyperparameters')
         layer_type = hyperparameters['type'].get('val')
         del hyperparameters['type']
@@ -14,7 +15,8 @@ class TrainBlock(BaseBlock):
         for arg_name, arg_val in hyperparameters.items():
             arg_val_built = self._arg_mapper.map_arg(arg_name=arg_name, arg_val=arg_val)
             param_dict.update(arg_val_built)
-        layer_built = layer_skeleton(**param_dict)
+        layer_built = layer_skeleton(**param_dict)(current_layer)
+        current_layer = layer_built
         self._args['layer'] = layer_built
         self._args['output_layer'] = layer_built
         tensor_list.append(layer_built)
