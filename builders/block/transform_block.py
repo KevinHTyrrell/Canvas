@@ -14,13 +14,13 @@ class TransformBlock(BaseBlock):
             flatten_layer_skeleton = self._layer_expert.get_layer('flatten')
             flatten_layer = flatten_layer_skeleton()(current_layer)
             current_layer = flatten_layer
-            layers_built.append(current_layer)
+            tensor_list.append(current_layer)
         if param_dict.get('upsample_input'):
             upsample_dims = len(param_dict.get('upsample_input'))
             upsample_layer_name = 'upsampling{n_dims}d'.format(n_dims=upsample_dims)
             upsample_layer_skeleton = self._layer_expert.get_layer(upsample_layer_name)
             upsample_layer = upsample_layer_skeleton(size=param_dict.get('upsample_input'))(current_layer)
             current_layer = upsample_layer
-            layers_built.append(current_layer)
+            tensor_list.append(current_layer)
         self._args['output_layer'] = current_layer
         return tensor_list
