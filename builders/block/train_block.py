@@ -18,6 +18,6 @@ class TrainBlock(BaseBlock):
         layer_built = layer_skeleton(**param_dict)(current_layer)
         current_layer = layer_built
         self._args['layer'] = layer_built
-        self._args['output_layer'] = layer_built
+        self._args['output_layer'] = current_layer
         tensor_list.append(layer_built)
         return tensor_list
