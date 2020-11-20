@@ -38,4 +38,6 @@ class ArgMapper(BaseMapper):
             arg_fn = self._get_regularizer(arg_val.get('name'))
             arg_fn_built = arg_fn(*arg_val.get('val'))
             return {arg_name.lower(): arg_fn_built}
+        if arg_val.get('complex'):
+            return {arg_name.lower(): {'layer': arg_val.get('name'), 'val': arg_val.get('val')}}
         return {arg_name, None}
