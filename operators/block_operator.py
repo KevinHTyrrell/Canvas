@@ -29,6 +29,7 @@ class BlockOperator(BaseOperator):
         block_dict = self._args.get('blocks')
         for block_name, block in block_dict.items():
             block.build(input_layer)
+            input_layer = block.get_output_layer()
 
     def set_blocks(self, transform_block, train_block, transfer_block):
         block_dict = {
