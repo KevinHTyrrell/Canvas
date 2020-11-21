@@ -7,11 +7,11 @@ class ArgTranslator(BaseTranslator):
         self._expert = ArgExpert()
 
     def feed_arg_dict(self, args: dict):
-        # check that each arg is a valid input, if so then parse accordingly and add to arg_dict #
+        translations = dict()
         for arg_name, arg_val in args.items():
             self._expert.check_arg(arg_name, arg_val)
-            self._translations.update({arg_name: getattr(self, '_parse_' + type(arg_val).__name__)(arg_val)})
-        return self._translations
+            translations.update({arg_name: getattr(self, '_parse_' + type(arg_val).__name__)(arg_val)})
+        return translations
 
     def _parse_bool(self, arg_val):
         return {'val': arg_val, 'complex': False}
