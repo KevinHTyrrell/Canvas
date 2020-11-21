@@ -20,4 +20,5 @@ class Architect:
             self._block_operator.set_blocks(*block_list)
             self._block_operator.assign_hyperparameters(translated_hyperparameters)
             tensor_list += self._block_operator.build_blocks(current_layer)
-            return tensor_list
+            current_layer = tensor_list[-1]
+        return tensor_list
